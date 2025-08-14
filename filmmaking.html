@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maia Kipping | Filmmaking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Banner */
+        .filmmaking-banner {
+            height: 100vh;
+            background-image: url('assets/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .filmmaking-banner-content {
+            max-width: 800px;
+            color: var(--dark-brown);
+        }
+        .filmmaking-banner-content h1 {
+            font-size: 5rem;
+            margin-bottom: 0;
+        }
+        .filmmaking-banner-content h2 {
+            font-size: 2.5rem;
+            font-family: 'Pinyon Script', cursive;
+            margin-bottom: 30px;
+        }
+        .filmmaking-banner-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Section Headings */
+        .film-section-title {
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 40px;
+            margin-top: 80px;
+            text-align: center;
+            position: relative;
+        }
+        .film-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--medium-brown);
+        }
+
+        /* Projects Container */
+        .film-projects {
+            padding-bottom: 50px;
+        }
+
+        /* Carousel Styles */
+        .film-carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .film-carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .film-carousel .film-card {
+            min-width: 100%;
+            margin-bottom: 0;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .carousel-control {
+            background-color: var(--medium-brown);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-control:hover {
+            opacity: 1;
+        }
+
+        .carousel-control.prev {
+            margin-left: 10px;
+        }
+
+        .carousel-control.next {
+            margin-right: 10px;
+        }
+        
+        /* Film Card */
+        .film-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            transition: 0.3s;
+        }
+        .film-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .film-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .film-card:hover .film-card-img img {
+            transform: scale(1.05);
+        }
+        .film-card-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .film-card-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--dark-brown);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .film-card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--medium-brown);
+        }
+        .film-card-description {
+            margin-bottom: 25px;
+            color: var(--medium-brown);
+            line-height: 1.8;
+        }
+        .film-card-credits {
+            margin-top: auto;
+            border-top: 1px solid var(--light-beige);
+            padding-top: 20px;
+            font-size: 0.95rem;
+        }
+        .film-card-awards {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--dark-brown);
+            padding: 10px;
+            background-color: var(--light-beige);
+            border-radius: 5px;
+        }
+        .watch-btn {
+            background-color: var(--medium-brown);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .watch-btn:hover {
+            background-color: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Alternate layout */
+        .film-card:nth-child(even) {
+            direction: rtl;
+        }
+        .film-card:nth-child(even) .film-card-content {
+            direction: ltr;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .film-card,
+            .film-card:nth-child(even) {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+            .film-card-img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="logo">Maia Kipping</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li class="dropdown">
+                <a href="work.html">My Work</a>
+                <ul class="dropdown-menu">
+                    <li><a href="content-creation.html">Content Creation</a></li>
+                    <li><a href="filmmaking.html">Filmmaking</a></li>
+                    <li><a href="modelling.html">Modelling</a></li>
+                    <li><a href="digital-marketing.html">Digital Marketing</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger"><div></div><div></div><div></div></div>
+    </div>
+</nav>
+
+<!-- Banner -->
+<section class="filmmaking-banner">
+    <div class="filmmaking-banner-content">
+        <h1>FILMMAKING</h1>
+        <h2>Film & Television Experience</h2>
+        <p>I have a degree in Practical Filmmaking (BA Hons) from Met Film School. I have experience in writing, directing, production running and assisting. Alongside this, I had an internship at Fremantle Media, where I worked with the development team, worked as an edit assistant and was an office runner during that time. I also have had the pleasure of wardrobe assisting at the Peaky Blinders Festival in Birmingham.</p>
+    </div>
+</section>
+
+<!-- Film Projects -->
+<section class="film-projects-section">
+    <div class="container">
+
+        <!-- Writing -->
+        <h2 class="film-section-title">Writing</h2>
+        <div class="film-projects">
+            <!-- Writing Project 1 -->
+            <div class="film-card">
+                <div class="film-card-img">
+                    <img src="assets/film (2).jpg" alt="2k5">
+                </div>
+                <div class="film-card-content">
+                    <h3 class="film-card-title">2k5</h3>
+                    <p class="film-card-description">It's 2005, Ellie and her best friend 4lyf, Zoe, listen to rap music and slam rhymes everyday dreaming of the big stage...</p>
+                    <a href="https://www.youtube.com/watch?v=obfXVkQBbBc&feature=youtu.be" target="_blank" class="watch-btn">Watch Here</a>
+                    <div class="film-card-credits">
+                        <p><strong>Director:</strong> Nicole Pott</p>
+                        <p><strong>Writer:</strong> Maia Kipping & Nicole Pott</p>
+                        <p><strong>Producer:</strong> Tuli Litvak</p>
+                        <p><strong>Co-Producer:</strong> Harris Tomlinson-Spence</p>
+                        <p><strong>Director of Photography:</strong> Max Graham</p>
+                        <span class="film-card-awards">Awards: 1 win & 3 nominations</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Writing Project 2 -->
+            <div class="film-card">
+                <div class="film-card-img">
+                    <img src="assets/film (1).jpg" alt="Unorthodox">
+                </div>
+                <div class="film-card-content">
+                    <h3 class="film-card-title">Unorthodox</h3>
+                    <p class="film-card-description">Two siblings struggle to fight their own battles as well as those against law enforcement...</p>
+                    <div class="film-card-credits">
+                        <p><strong>Director:</strong> Maia Kipping</p>
+                        <p><strong>Writer:</strong> Maia Kipping</p>
+                        <p><strong>Producer:</strong> Lea Otovic-Nesic</p>
+                        <p><strong>Director of Photography:</strong> Joel Marson</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Directing -->
+        <h2 class="film-section-title">Directing</h2>
+        <div class="film-projects">
+            <!-- Directing Project 1 -->
+            <div class="film-card">
+                <div class="film-card-img">
+                    <img src="assets/film (2).png" alt="Knockout">
+                </div>
+                <div class="film-card-content">
+                    <h3 class="film-card-title">Knockout</h3>
+                    <p class="film-card-description">A young man bullied at work escapes into fantasies of rage and revenge...</p>
+                    <div class="film-card-credits">
+                        <p><strong>Director:</strong> Maia Kipping</p>
+                        <p><strong>Writer:</strong> Elizabeth Evershed</p>
+                        <p><strong>Producer:</strong> Saj Hussain & Anca Vaida</p>
+                        <p><strong>Director of Photography:</strong> Andras Horvath</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Directing Project 2 -->
+            <div class="film-card">
+                <div class="film-card-img">
+                    <img src="assets/film (3).png" alt="Can we order first?">
+                </div>
+                <div class="film-card-content">
+                    <h3 class="film-card-title">Can we order first?</h3>
+                    <p class="film-card-description">'Can We Order First?' is a coming out story with an unexpected twist.</p>
+                    <div class="film-card-credits">
+                        <p><strong>Director:</strong> Maia Kipping & Anca Vaida</p>
+                        <p><strong>Writer:</strong> Cova Camblor & Anca Vaida</p>
+                        <p><strong>Producer:</strong> Anca Vaida</p>
+                        <p><strong>Director of Photography:</strong> Andras Horvath</p>
+                        <span class="film-card-awards">Awards: 3 wins & 1 nomination</span>
+                    </div>
+                </div>
+            </div>
+             <div class="film-card">
+                <div class="film-card-img">
+                    <img src="assets/film (1).jpg" alt="Unorthodox">
+                </div>
+                <div class="film-card-content">
+                    <h3 class="film-card-title">Unorthodox</h3>
+                    <p class="film-card-description">Two siblings struggle to fight their own battles as well as those against law enforcement...</p>
+                    <div class="film-card-credits">
+                        <p><strong>Director:</strong> Maia Kipping</p>
+                        <p><strong>Writer:</strong> Maia Kipping</p>
+                        <p><strong>Producer:</strong> Lea Otovic-Nesic</p>
+                        <p><strong>Director of Photography:</strong> Joel Marson</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Production Runner / Assistant -->
+        <h2 class="film-section-title">Production Runner / Assistant</h2>
+        <div class="film-projects">
+            <!-- Production Project 1 -->
+            <div class="film-card">
+                <div class="film-card-img">
+                    <img src="assets/film (4).png" alt="Alan Carr's Epic Gameshow">
+                </div>
+                <div class="film-card-content">
+                    <h3 class="film-card-title">Alan Carr's Epic Gameshow</h3>
+                    <p class="film-card-description">A trio of American gameshows including The Price Is Right, Strike It Lucky...</p>
+                </div>
+            </div>
+            <!-- Production Project 2 -->
+            <div class="film-card">
+                <div class="film-card-img">
+                    <img src="assets/film (1).png" alt="Britain's Got Talent">
+                </div>
+                <div class="film-card-content">
+                    <h3 class="film-card-title">Britain's Got Talent</h3>
+                    <p class="film-card-description">A variety of acts perform in front of a live audience and a panel of judges...</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <div class="footer-logo">MAIA KIPPING</div>
+                <p class="footer-tagline">Content Creator | Filmmaker | Model | Digital Marketer</p>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="work.html">My Work</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-heading">Portfolio</h3>
+                <ul class="footer-menu">
+                    <li><a href="content-creation.html">Content Creation</a></li>
+                    <li><a href="filmmaking.html">Filmmaking</a></li>
+                    <li><a href="modelling.html">Modelling</a></li>
+                    <li><a href="digital-marketing.html">Digital Marketing</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-heading">Connect</h3>
+                <ul class="footer-contact">
+                    <li><a href="mailto:maia@maiakipping.com"><i class="fas fa-envelope"></i> maia@maiakipping.com</a></li>
+                    <li><a href="https://instagram.com/maiakipping" target="_blank"><i class="fab fa-instagram"></i> @maiakipping</a></li>
+                    <li><a href="https://tiktok.com/@maiakipping" target="_blank"><i class="fab fa-tiktok"></i> @maiakipping</a></li>
+                    <li><a href="https://youtube.com/@maiakipping" target="_blank"><i class="fab fa-youtube"></i> @maiakipping</a></li>
+                    <li><a href="https://www.linkedin.com/in/maiakipping/" target="_blank"><i class="fab fa-linkedin"></i> Maia Kipping</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Maia Kipping. All rights reserved.</p>
+            <p>Built by <a href="https://thefreewebsitewizards.com/" target="_blank">The Free Website Wizards</a></p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

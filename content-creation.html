@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maia Kipping | Content Creation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for this page */
+        .ugc-section {
+            background-image: url('assets/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            height: 100vh; /* Make section full viewport height */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .ugc-section .container {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .content-banner {
+            height: 150px !important; /* Fixed banner height */
+        }
+        
+        .content-banner-content h1 {
+            font-size: 3.5rem !important; /* Decreased font size */
+            animation: none !important; /* Remove animation effects */
+        }
+        
+        .section-title {
+            font-size: 3.5rem !important;
+            text-align: center;
+            margin-bottom: 0 !important;
+        }
+
+        .section-subtitle{
+            margin-top: 0 !important;
+            font-size: 1.8rem !important;
+        }
+
+        .ugc-intro {
+            margin-top: 20px;
+        }
+        
+        .script-heading {
+            font-size: 2rem !important; /* Decreased font size */
+        }
+        
+        .ugc-content p {
+            font-size: 1rem !important; /* Decreased font size */
+        }
+        
+        .cta-text {
+            font-size: 2rem !important; /* Decreased font size */
+        }
+        
+        /* Video portfolio section styles */
+        .video-portfolio-section {
+            background-color: var(--light-beige);
+            padding: 60px 0;
+        }
+        
+        .video-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .video-item {
+            width: 250px;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
+        .kindred-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .kindred-row:first-of-type {
+            margin-bottom: 15px;
+        }
+        
+        /* Instagram-like video functionality */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-item {
+            position: relative;
+        }
+        
+        .video-caption {
+            padding: 10px;
+            background-color: var(--light-beige);
+            text-align: center;
+        }
+
+        .photo-portfolio-section {
+            padding: 60px 0;
+            background-image: url('assets/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .photo-portfolio-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .photo-portfolio-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1; /* Added z-index */
+        }
+        
+        .photo-item {
+            position: relative; /* Added position relative */
+            height: 100%; /* Ensure consistent height */
+            width: 100%; /* Ensure consistent width */
+            overflow: hidden; /* Keep content within boundaries */
+        }
+        
+        /* Fix for fitness gallery layout */
+        .fitness-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 20px; /* Increased gap for more spacing */
+        }
+        
+        .fitness-gallery .photo-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+        
+        .photo-icon {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 992px) {
+            /* Short-Form Portfolio - Vertical Order */
+            .video-row {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 30px !important;
+                flex-wrap: nowrap !important;
+            }
+            
+            .video-item {
+                width: 80% !important;
+                max-width: 350px !important;
+                margin: 0 auto !important;
+            }
+            
+            /* Ten Health & Fitness Gallery - Vertical Order */
+            .fitness-gallery {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 30px !important;
+                grid-template-columns: none !important;
+                grid-template-rows: none !important;
+            }
+            
+            .fitness-gallery .photo-item,
+            .fitness-gallery .photo-item.large {
+                width: 80% !important;
+                max-width: 350px !important;
+                height: 350px !important;
+                grid-column: auto !important;
+                grid-row: auto !important;
+            }
+            
+            /* My HAPII and InkeyList Galleries - Center Only */
+            .hapii-gallery,
+            .inkey-gallery {
+                grid-template-columns: 1fr !important;
+                justify-items: center !important;
+            }
+            
+            .hapii-gallery .photo-item,
+            .inkey-gallery .photo-item {
+                width: 80% !important;
+                max-width: 350px !important;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .video-item {
+                width: 90% !important;
+                max-width: 300px !important;
+            }
+            
+            .fitness-gallery .photo-item,
+            .fitness-gallery .photo-item.large,
+            .hapii-gallery .photo-item,
+            .inkey-gallery .photo-item {
+                width: 90% !important;
+                max-width: 300px !important;
+                height: 300px !important;
+            }
+        }
+    </style>
+</head>
+<body class="content-page">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Maia Kipping</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="work.html">My Work</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: Banner + About UGC -->
+    <section class="ugc-section">
+        <!--<div class="content-banner">
+            <div class="content-banner-overlay"></div>
+            <div class="content-banner-content">
+                <h1>Content Creation</h1>
+            </div>
+        </div>-->
+
+        <div class="container">
+            <div class="ugc-intro fade-in">
+                <h2 class="section-title">ABOUT UGC</h2>
+                <div class="ugc-content">
+                    <h3 class="script-heading">User Generated Content</h3>
+                    <p>User-Generated Content (UGC) is a powerful tool for brands looking to build authenticity and trust with their audience. In today's digital landscape, consumers crave genuine experiences and relatable stories, which UGC provides by showcasing real people using and enjoying products. By leveraging UGC, brands can tap into the creativity and enthusiasm of their customers, creating a community-driven narrative that resonates more deeply than traditional advertising. This type of content not only enhances brand credibility but also fosters a sense of community and engagement, encouraging others to share their experiences and further amplifying the brand's reach. In essence, UGC transforms satisfied customers into brand advocates, driving organic growth and fostering lasting connections.</p>
+                    <div class="cta-container">
+                        <p class="cta-text">The proof is in the pudding, it's time to achieve your social goals!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Short-Form Video Portfolio -->
+    <section class="video-portfolio-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Short-Form Portfolio</h2>
+            <h3 class="section-subtitle fade-in">Previous work/partnerships</h3>
+            
+            <div class="video-portfolio fade-in">
+                <div class="video-row">
+                    <div class="video-item">
+                        <video src="assets/video (2).mp4" muted loop playsinline></video>
+                        <div class="video-caption">
+                            <h4>Client Case Study:<br>MONICA VINADER</h4>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/video (1).mp4" muted loop playsinline></video>
+                        <div class="video-caption">
+                            <h4>Client Case Study:<br>HERBAL GARDENS</h4>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/video (7).mp4" muted loop playsinline></video>
+                        <div class="video-caption">
+                            <h4>Client Case Study:<br>THAICUP</h4>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/video (6).mp4" muted loop playsinline></video>
+                        <div class="video-caption">
+                            <h4>Client Case Study:<br>ECO BIRD FOOD</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="section-subtitle fade-in">Client case study: Kindred fires</h3>
+                <div class="kindred-row">
+                    <div class="video-item kindred-item"><video src="assets/video (11).mp4" muted loop playsinline></video></div>
+                    <div class="video-item kindred-item"><video src="assets/video (12).mp4" muted loop playsinline></video></div>
+                    <div class="video-item kindred-item"><video src="assets/video (5).mp4" muted loop playsinline></video></div>
+                    <div class="video-item kindred-item"><video src="assets/video (9).mp4" muted loop playsinline></video></div>
+                    <div class="video-item kindred-item"><video src="assets/video (10).mp4" muted loop playsinline></video></div>
+                </div>
+            </div>
+            <a href="contact.html" class="btn" style="display:block; width:fit-content; margin:0 auto;">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Photography Portfolio -->
+    <section class="photo-portfolio-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Photography Portfolio</h2>
+
+            <h3 class="section-subtitle">Client Case Study: Ten Health & Fitness</h3>
+            <div class="photo-gallery fitness-gallery">
+                <div class="photo-item gallery-item">
+                    <img src="assets/fitness (1).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item gallery-item">
+                    <img src="assets/fitness (2).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item large gallery-item">
+                    <img src="assets/fitness (3).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item gallery-item">
+                    <img src="assets/fitness (4).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item gallery-item">
+                    <img src="assets/fitness (5).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Client Case Study: My HAPII</h3>
+            <div class="photo-gallery hapii-gallery">
+                <div class="photo-item large gallery-item">
+                    <img src="assets/hapii (1).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item gallery-item">
+                    <img src="assets/hapii (2).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item gallery-item">
+                    <img src="assets/hapii (3).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item large gallery-item">
+                    <img src="assets/hapii (4).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Client Case Study: InkeyList</h3>
+            <div class="photo-gallery inkey-gallery">
+                <div class="photo-item gallery-item">
+                    <img src="assets/serum (1).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item large gallery-item">
+                    <img src="assets/serum (2).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="photo-item gallery-item">
+                    <img src="assets/serum (3).jpg" alt="">
+                    <div class="photo-overlay">
+                        <div class="photo-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+            </div>
+            <a href="contact.html" class="btn" style="display:block; width:fit-content; margin:0 auto;">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-img">
+            <video src="" class="lightbox-video" controls></video>
+        </div>
+        <div class="lightbox-nav">
+            <span class="lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+            <span class="lightbox-next"><i class="fas fa-chevron-right"></i></span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">MAIA KIPPING</div>
+                    <p class="footer-tagline">Content Creator | Filmmaker | Model | Digital Marketer</p>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="work.html">My Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Portfolio</h3>
+                    <ul class="footer-menu">
+                        <li><a href="content-creation.html">Content Creation</a></li>
+                        <li><a href="filmmaking.html">Filmmaking</a></li>
+                        <li><a href="modelling.html">Modelling</a></li>
+                        <li><a href="digital-marketing.html">Digital Marketing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Connect</h3>
+                    <ul class="footer-contact">
+                        <li><a href="mailto:maia@maiakipping.com?subject=Inquiry for Maia Kipping"><i class="fas fa-envelope"></i> maia@maiakipping.com</a></li>
+                        <li><a href="https://instagram.com/maiakipping" target="_blank"><i class="fab fa-instagram"></i> @maiakipping</a></li>
+                        <li><a href="https://tiktok.com/@maiakipping" target="_blank"><i class="fab fa-tiktok"></i> @maiakipping</a></li>
+                        <li><a href="https://youtube.com/@maiakipping" target="_blank"><i class="fab fa-youtube"></i> @maiakipping</a></li>
+                        <li><a href="https://www.linkedin.com/in/maiakipping/" target="_blank"><i class="fab fa-linkedin"></i> Maia Kipping</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Maia Kipping. All rights reserved.</p>
+                <p class="credits">Built by <a href="https://thefreewebsitewizards.com" target="_blank">The Free Website Wizards</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Instagram-like video functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('.video-item video');
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxVideo = document.querySelector('.lightbox-video');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            
+            // Function to check if an element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            // Function to handle video playback
+            function handleVideoPlayback() {
+                videos.forEach(video => {
+                    if (isInViewport(video)) {
+                        if (video.paused) {
+                            video.play().catch(e => console.log("Video play error:", e));
+                        }
+                    } else {
+                        if (!video.paused) {
+                            video.pause();
+                        }
+                    }
+                });
+            }
+            
+            // Check videos on scroll
+            window.addEventListener('scroll', handleVideoPlayback);
+            
+            // Check videos on page load
+            handleVideoPlayback();
+            
+            // Handle click on video items
+            videos.forEach(video => {
+                video.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    lightboxVideo.src = video.src;
+                    lightbox.classList.add('active');
+                    lightboxVideo.classList.add('active');
+                    lightboxVideo.muted = false;
+                    lightboxVideo.play().catch(e => console.log("Video play error:", e));
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close lightbox
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                lightboxVideo.pause();
+                lightboxVideo.muted = true;
+            });
+            
+            // Close lightbox when clicking outside the video
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    lightboxVideo.pause();
+                    lightboxVideo.muted = true;
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    lightboxVideo.pause();
+                    lightboxVideo.muted = true;
+                }
+            });
+            
+            // Add touch swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            lightbox.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            lightbox.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    // Swipe left - next
+                    if (document.querySelector('.lightbox-next')) {
+                        document.querySelector('.lightbox-next').click();
+                    }
+                }
+                if (touchEndX > touchStartX + 50) {
+                    // Swipe right - previous
+                    if (document.querySelector('.lightbox-prev')) {
+                        document.querySelector('.lightbox-prev').click();
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        // Photo gallery lightbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoItems = document.querySelectorAll('.photo-item');
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = document.querySelector('.lightbox-img');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            
+            let currentIndex = 0;
+            let galleryItems = [];
+            
+            // Handle click on photo items
+            photoItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const img = item.querySelector('img');
+                    const gallery = item.closest('.photo-gallery');
+                    
+                    // Get all items from the same gallery
+                    galleryItems = Array.from(gallery.querySelectorAll('.photo-item'));
+                    currentIndex = galleryItems.indexOf(item);
+                    
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                    lightboxImg.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Navigation functions
+            function showPrevious() {
+                currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                const img = galleryItems[currentIndex].querySelector('img');
+                lightboxImg.src = img.src;
+            }
+            
+            function showNext() {
+                currentIndex = (currentIndex + 1) % galleryItems.length;
+                const img = galleryItems[currentIndex].querySelector('img');
+                lightboxImg.src = img.src;
+            }
+            
+            // Navigation controls
+            if (lightboxPrev) {
+                lightboxPrev.addEventListener('click', showPrevious);
+            }
+            
+            if (lightboxNext) {
+                lightboxNext.addEventListener('click', showNext);
+            }
+            
+            // Keyboard navigation for photos
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active') || !lightboxImg.classList.contains('active')) return;
+                
+                if (e.key === 'ArrowLeft') {
+                    showPrevious();
+                } else if (e.key === 'ArrowRight') {
+                    showNext();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
