@@ -430,11 +430,34 @@
             .analytics-card {
                 padding: 20px;
             }
+            
+            /* Mobile FAQ Content Visibility Fixes */
+            .faq-content.active {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+            
+            .brand-list {
+                display: block !important;
+                margin-bottom: 20px;
+            }
+            
+            .brand-item {
+                margin-bottom: 10px;
+                padding: 12px;
+                display: block !important;
+            }
+            
+            .disclaimer {
+                display: block !important;
+                padding-bottom: 5px;
+                margin-top: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+<!-- Navbar -->
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">Maia Kipping</a>
@@ -726,6 +749,68 @@
 
     <script src="script.js"></script>
     <script>
+        // Stat Numbers Count Up Animation with Intersection Observer
+function initStatCounters() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                animateCounter(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    statNumbers.forEach(stat => {
+        observer.observe(stat);
+    });
+}
+
+function animateCounter(element) {
+    const text = element.textContent;
+    const hasK = text.includes('K');
+    const hasPercent = text.includes('%');
+    const numericValue = parseFloat(text.replace(/[^0-9.]/g, ''));
+    
+    if (isNaN(numericValue)) return;
+    
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const increment = numericValue / steps;
+    const stepDuration = duration / steps;
+    
+    let currentValue = 0;
+    element.textContent = '0' + (hasK ? 'K' : '') + (hasPercent ? '%' : '');
+    
+    const timer = setInterval(() => {
+        currentValue += increment;
+        
+        if (currentValue >= numericValue) {
+            currentValue = numericValue;
+            clearInterval(timer);
+        }
+        
+        let displayValue;
+        if (hasK) {
+            displayValue = currentValue.toFixed(1) + 'K';
+        } else if (hasPercent) {
+            displayValue = currentValue.toFixed(2) + '%';
+        } else {
+            displayValue = Math.round(currentValue).toString();
+        }
+        
+        element.textContent = displayValue;
+    }, stepDuration);
+}
+
+// Initialize stat counters when DOM is loaded
+document.addEventListener('DOMContentLoaded', initStatCounters);
         // FAQ Toggle Functionality
         function toggleFaq(header) {
             const content = header.nextElementSibling;
@@ -748,8 +833,6 @@
                 icon.style.transform = 'rotate(0deg)';
             }
         }
-        
-        // Remove all animation functions - progress bars will show data immediately
     </script>
 </body>
 </html>

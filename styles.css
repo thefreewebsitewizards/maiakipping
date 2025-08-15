@@ -921,28 +921,22 @@ a:hover {
         margin: 15px 0;
     }
     
-    /* Mobile Dropdown Styles */
+    /* Mobile Dropdown Styles - Always Visible */
     .dropdown-menu {
         position: static;
-        background-color: rgba(236, 224, 209, 0.5); /* Slightly transparent background */
+        background-color: rgba(236, 224, 209, 0.8);
         box-shadow: none;
         opacity: 1;
         visibility: visible;
         transform: none;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        padding: 0;
+        max-height: 200px; /* Changed from 0 to 200px to make always visible */
+        overflow: visible;
+        transition: all 0.3s ease;
+        padding: 10px 0; /* Changed from 0 to 10px */
         width: 100%;
         margin-top: 5px;
         border-radius: 5px;
-        text-align: center; /* Center text content */
-    }
-    
-    /* Show dropdown on hover in mobile view */
-    .dropdown:hover .dropdown-menu {
-        max-height: 200px;
-        padding: 5px 0;
+        text-align: center;
     }
     
     .dropdown-menu li {
@@ -2238,3 +2232,13 @@ a:hover {
         font-size: 1.3rem;
     }
 }
+
+  @keyframes zoomPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+  /* optional: respect users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-img { animation: none !important; }
+  }
