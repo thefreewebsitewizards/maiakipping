@@ -582,7 +582,7 @@ a:hover {
 
 .portfolio-categories {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Force 4 columns */
+    grid-template-columns: repeat(2, 1fr); /* Force 4 columns */
     gap: 20px;
     margin-top: 50px;
 }

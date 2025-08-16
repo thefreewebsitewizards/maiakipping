@@ -226,153 +226,6 @@
             background-color: var(--light-beige);
         }
         
-        /* Analytics Section */
-        .analytics-section {
-            background-image: url('assets/bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            padding: 80px 0;
-            color: white;
-        }
-        
-        .analytics-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        
-        .analytics-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .analytics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        .analytics-card {
-            background: #634832;
-            border-radius: 15px;
-            padding: 30px;
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .platform-title {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 25px;
-            color: #ece0d1;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .stat-item {
-            text-align: center;
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 10px;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #634832;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #634832;
-        }
-        
-        .chart-container {
-            margin-top: 20px;
-        }
-        
-        .chart-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .progress-bar {
-            background: #ffffff;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
-            height: 30px;
-            position: relative;
-            border: 1px solid #ccc;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            transition: width 2s ease;
-            font-size: 0.9rem;
-        }
-        
-        .male { background: linear-gradient(90deg, #4285f4, #34a853); }
-        .female { background: linear-gradient(90deg, #ea4335, #fbbc05); }
-        .followers { background: linear-gradient(90deg, #8e44ad, #3498db); }
-        .non-followers { background: linear-gradient(90deg, #e74c3c, #f39c12); }
-        
-        .chart-legend {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-        
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .legend-color {
-            width: 15px;
-            height: 15px;
-            border-radius: 3px;
-        }
-        
-        /* Add the missing legend color definitions */
-        .legend-color.male { background: linear-gradient(90deg, #4285f4, #34a853); }
-        .legend-color.female { background: linear-gradient(90deg, #ea4335, #fbbc05); }
-        .legend-color.followers { background: linear-gradient(90deg, #8e44ad, #3498db); }
-        .legend-color.non-followers { background: linear-gradient(90deg, #e74c3c, #f39c12); }
-        
-        .partnership-note {
-            background: #634832;
-            border-left: 4px solid #38220f;
-            padding: 20px;
-            margin-top: 30px;
-            border-radius: 5px;
-            font-style: italic;
-        }
-        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-main {
@@ -387,10 +240,6 @@
             
             .hero-title {
                 font-size: 3rem;
-            }
-            
-            .analytics-grid {
-                grid-template-columns: 1fr;
             }
         }
         
@@ -407,10 +256,6 @@
                 font-size: 2.5rem;
             }
             
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .brand-list {
                 grid-template-columns: 1fr;
             }
@@ -425,10 +270,6 @@
             
             .section-title {
                 font-size: 2rem;
-            }
-            
-            .analytics-card {
-                padding: 20px;
             }
             
             /* Mobile FAQ Content Visibility Fixes */
@@ -592,109 +433,6 @@
         </div>
     </section>
 
-    <!-- Analytics & Audience Insights Section -->
-    <section class="analytics-section">
-        <div class="container analytics-content">
-            <h2 class="section-title">Analytics & Audience Insights</h2>
-            <div class="analytics-grid">
-                <!-- TikTok Analytics -->
-                <div class="analytics-card">
-                    <h3 class="platform-title"><i class="fab fa-tiktok"></i> TikTok</h3>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">18K</div>
-                            <div class="stat-label">Post Views (June 2025)</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">6.5K</div>
-                            <div class="stat-label">Total Viewers</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">19.65%</div>
-                            <div class="stat-label">Engagement Rate</div>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <div class="chart-title">Viewer Insights: Gender</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill male" style="width: 20%;">Male 15%</div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill female" style="width: 80%;">Female 80%</div>
-                        </div>
-                        <div class="chart-legend">
-                            <div class="legend-item">
-                                <div class="legend-color male"></div>
-                                <span>Male</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color female"></div>
-                                <span>Female</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Instagram Analytics -->
-                <div class="analytics-card">
-                    <h3 class="platform-title"><i class="fab fa-instagram"></i> Instagram</h3>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">15.9K</div>
-                            <div class="stat-label">Post Views (June 2025)</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">3.5K</div>
-                            <div class="stat-label">Accounts Reached</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">1.3K</div>
-                            <div class="stat-label">Followers</div>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <div class="chart-title">Audience Breakdown</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill followers" style="width: 45.2%;">Followers 45.2%</div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill non-followers" style="width: 54.8%;">Non-followers 54.8%</div>
-                        </div>
-                        <div class="chart-legend">
-                            <div class="legend-item">
-                                <div class="legend-color followers"></div>
-                                <span>Followers</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color non-followers"></div>
-                                <span>Non-followers</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- YouTube Analytics -->
-                <div class="analytics-card">
-                    <h3 class="platform-title"><i class="fab fa-youtube"></i> YouTube</h3>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">10.4K</div>
-                            <div class="stat-label">Views (June 2025)</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">1.9K</div>
-                            <div class="stat-label">Unique Viewers</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="partnership-note">
-                <strong>Partnership Success:</strong> Previous partnerships have received 442 plays on Instagram with 48.3% of accounts reached were followers and 51.7% non-followers.
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -748,91 +486,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Stat Numbers Count Up Animation with Intersection Observer
-function initStatCounters() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                entry.target.classList.add('counted');
-                animateCounter(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    statNumbers.forEach(stat => {
-        observer.observe(stat);
-    });
-}
-
-function animateCounter(element) {
-    const text = element.textContent;
-    const hasK = text.includes('K');
-    const hasPercent = text.includes('%');
-    const numericValue = parseFloat(text.replace(/[^0-9.]/g, ''));
-    
-    if (isNaN(numericValue)) return;
-    
-    const duration = 2000; // 2 seconds
-    const steps = 60;
-    const increment = numericValue / steps;
-    const stepDuration = duration / steps;
-    
-    let currentValue = 0;
-    element.textContent = '0' + (hasK ? 'K' : '') + (hasPercent ? '%' : '');
-    
-    const timer = setInterval(() => {
-        currentValue += increment;
-        
-        if (currentValue >= numericValue) {
-            currentValue = numericValue;
-            clearInterval(timer);
-        }
-        
-        let displayValue;
-        if (hasK) {
-            displayValue = currentValue.toFixed(1) + 'K';
-        } else if (hasPercent) {
-            displayValue = currentValue.toFixed(2) + '%';
-        } else {
-            displayValue = Math.round(currentValue).toString();
-        }
-        
-        element.textContent = displayValue;
-    }, stepDuration);
-}
-
-// Initialize stat counters when DOM is loaded
-document.addEventListener('DOMContentLoaded', initStatCounters);
-        // FAQ Toggle Functionality
-        function toggleFaq(header) {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('.faq-icon');
-            
-            // Close all other FAQ items
-            document.querySelectorAll('.faq-content').forEach(item => {
-                if (item !== content) {
-                    item.classList.remove('active');
-                    item.previousElementSibling.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
-                }
-            });
-            
-            // Toggle current FAQ item
-            content.classList.toggle('active');
-            
-            if (content.classList.contains('active')) {
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-    </script>
 </body>
 </html>

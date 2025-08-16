@@ -319,3 +319,112 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run scroll animation on page load
     scrollAnimation();
 });
+
+
+// Stats Animation for Analytics Section
+function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const progressBars = document.querySelectorAll('.progress-fill');
+    
+    // Function to check if element is in viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+    
+    // Animate numbers
+    statNumbers.forEach(stat => {
+        if (isInViewport(stat) && !stat.classList.contains('animated')) {
+            stat.classList.add('animated');
+            const finalValue = stat.textContent;
+            const numericValue = parseFloat(finalValue.replace(/[^0-9.]/g, ''));
+            const suffix = finalValue.replace(/[0-9.]/g, '');
+            
+            let currentValue = 0;
+            const increment = numericValue / 50; // 50 steps for smooth animation
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= numericValue) {
+                    currentValue = numericValue;
+                    clearInterval(timer);
+                }
+                stat.textContent = Math.floor(currentValue) + suffix;
+            }, 30);
+        }
+    });
+    
+    // Animate progress bars
+    progressBars.forEach(bar => {
+        if (isInViewport(bar) && !bar.classList.contains('animated')) {
+            bar.classList.add('animated');
+            const targetWidth = bar.style.width;
+            bar.style.width = '0%';
+            
+            setTimeout(() => {
+                bar.style.width = targetWidth;
+            }, 100);
+        }
+    });
+}
+
+// Run stats animation on scroll and load
+window.addEventListener('scroll', animateStats);
+window.addEventListener('load', animateStats);
+
+
+// Circular Progress Bars Animation
+function animateCircularProgress(progressBar, percentage) {
+    const circle = progressBar.querySelector('.progress-circle');
+    const radius = circle.r.baseVal.value;
+    const circumference = 2 * Math.PI * radius;
+    
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = circumference;
+    const percentText = progressBar.querySelector('.progress-percent');
+    const offset = circumference - (percentage / 100) * circumference;
+    
+    // Animate the circle
+    setTimeout(() => {
+        circle.style.transition = 'stroke-dashoffset 2s ease-in-out';
+        circle.style.strokeDashoffset = offset;
+    }, 100);
+    
+    // Animate the percentage text
+    let current = 0;
+    const increment = percentage / 100;
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= percentage) {
+            current = percentage;
+            clearInterval(timer);
+        }
+        percentText.textContent = Math.floor(current) + '%';
+    }, 20);
+}
+
+// Analytics Section Observer
+const analyticsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const progressBars = entry.target.querySelectorAll('.progress-bar');
+            progressBars.forEach(bar => {
+                const percentage = parseInt(bar.getAttribute('data-percentage'));
+                animateCircularProgress(bar, percentage);
+            });
+            analyticsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+// Observe analytics section
+document.addEventListener('DOMContentLoaded', function() {
+    const analyticsSection = document.querySelector('.analytics-section');
+    if (analyticsSection) {
+        analyticsObserver.observe(analyticsSection);
+    }
+});

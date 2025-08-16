@@ -11,7 +11,61 @@
             margin-top: 30px;
             margin-bottom: 10px !important;
             font-size: 3rem !important;
+        }
 
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--medium-brown);
+            font-size: 1.5rem;
+        }
+
+        /* Custom gallery styles for modelling page */
+        .modelling-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            margin: 40px 0;
+        }
+
+        .modelling-gallery .gallery-item {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .modelling-gallery .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .modelling-gallery .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .modelling-gallery .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .modelling-gallery {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin: 30px 0;
+            }
+
+            .section-subtitle {
+                font-size: 1.3rem;
+                margin-bottom: 25px;
+            }
         }
 
         /* Enhanced lightbox styles for zoom functionality */
@@ -90,85 +144,14 @@
     <section class="portfolio-section">
         <div class="container">
             <h1 class="section-title fade-in">Modelling</h1>
-            
-            <div class="portfolio-intro fade-in">
-                <p>As a model, I've had the opportunity to work with various brands and photographers, bringing their vision to life through my versatility and expressiveness.</p>
-            </div>
-            
-            <!-- Gallery Layout: 14-pic grid -->
-            <div class="gallery-grid fade-in">
-                <!-- Row 1 -->
+            <h2 class="section-subtitle fade-in">In Stay Wild Swimwear for Elle Italia</h2>
+    
+            <div class="modelling-gallery fade-in">
                 <div class="gallery-item">
-                    <img src="assets/modelling (1).jpeg" alt="Modelling Portfolio 1">
+                    <img src="assets/model.jpg" alt="Modelling Portfolio 1">
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/modelling (2).jpg" alt="Modelling Portfolio 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/modelling (2).jpeg" alt="Modelling Portfolio 3">
-                </div>
-                
-                <!-- Row 2 -->
-                <div class="gallery-item">
-                    <img src="assets/modelling (3).jpeg" alt="Modelling Portfolio 5">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/modelling (3).jpg" alt="Modelling Portfolio 6">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/modelling (4).jpg" alt="Modelling Portfolio 7">
-                </div>
-                
-                <!-- Row 3 -->
-                <div class="gallery-item">
-                    <img src="assets/modelling (1).jfif" alt="Modelling Portfolio 9">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/modelling (4).jpeg" alt="Modelling Portfolio 10">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/modelling (5).jpeg" alt="Modelling Portfolio 11">
-                </div>
-
-                <div class="gallery-item">
-                    <img src="assets/modelling (5).jpg" alt="Modelling Portfolio 4">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/modelling (8).jpg" alt="Modelling Portfolio 18">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/modelling (6).jpg" alt="Modelling Portfolio 12">
-                </div>
-
-                <!-- Row 4 -->
-                <div class="gallery-item">
-                    <img src="assets/modelling (7).jpg" alt="Modelling Portfolio 13">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/modelling (6).jpeg" alt="Modelling Portfolio 14">
-                </div>
-            </div>
-            
-            <!-- Full-width image -->
-            <div class="full-width-gallery fade-in">
-                <div class="gallery-item full-width">
-                    <img src="assets/modelling (11).jpg" alt="Modelling Portfolio Full Width">
-                </div>
-            </div>
-            
-            <!-- 4 full-width images -->
-            <div class="full-width-gallery fade-in">
-                <div class="gallery-item full-width">
-                    <img src="assets/modelling (9).jpg" alt="Modelling Portfolio Full Width 1">
-                </div>
-                <div class="gallery-item full-width">
-                    <img src="assets/modelling (10).jpg" alt="Modelling Portfolio Full Width 2">
-                </div>
-                <div class="gallery-item full-width">
-                    <img src="assets/modelling (1).jpg" alt="Modelling Portfolio Full Width 3">
-                </div>
-                <div class="gallery-item full-width">
-                    <img src="assets/modelling (12).jpg" alt="Modelling Portfolio Full Width 4">
+                    <img src="assets/model1.jpg" alt="Modelling Portfolio 2">
                 </div>
             </div>
         </div>
